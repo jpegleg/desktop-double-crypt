@@ -1,5 +1,6 @@
 #double-crypt
-template for linux GUI users to encrypt files easily
+
+template for linux users to easily encrypt files automatically
 
 as well as for automating double AES256 file 
 
