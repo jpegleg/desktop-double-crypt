@@ -34,4 +34,17 @@ and drop you into a vim session to edit the copy, as well as set up ~/Desktop
 files for GUI usage.
 
 
+Example generation of the additional option symmetric keyfile:
+
+```
+cat /dev/urandom | cut -c1-9999 > ~/Desktop/keyfile.bin
+```
+
+Then when using ddc in double mode, using that file generated in the example above:
+
+```
+ddc ~/Desktop/encrypt/ mykey@localhost ~/Desktop/keyfile.bin
+```
+
+
 Also see https://github.com/jpegleg/crypt-baller
