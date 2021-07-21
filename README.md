@@ -1,4 +1,4 @@
-#double-crypt
+# double-crypt
 
 template for linux users to easily encrypt files automatically
 
