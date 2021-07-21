@@ -37,7 +37,7 @@ files for GUI usage.
 Example generation of the additional option symmetric keyfile:
 
 ```
-cat /dev/urandom | cut -c1-9999 > ~/Desktop/keyfile.bin
+cat /dev/urandom | fold -w9999 | head -n42 > ~/Desktop/keyfile.bin
 ```
 
 Then when using ddc in double mode, using that file generated in the example above:
