@@ -43,7 +43,7 @@ cat /dev/urandom | cut -c1-9999 > ~/Desktop/keyfile.bin
 Then when using ddc in double mode, using that file generated in the example above:
 
 ```
-ddc ~/Desktop/encrypt/ mykey@localhost ~/Desktop/keyfile.bin
+ddc ~/Desktop/encrypt/ mygpgkey@localhost ~/Desktop/keyfile.bin
 ```
 
 
