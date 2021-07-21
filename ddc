@@ -1,0 +1,47 @@
+#!/usr/bin/env sh
+
+dir=$1
+rec=$2
+double=$3
+
+shredd=$(which shred)
+
+if [ -n "$dir" ]; then
+    echo "dir set to $dir"
+else
+    echo "Usage: ddc directory_to_encrypt gpgkeyreference symmetricadditionaloptionalfile"
+    echo "No argument specified! Exiting now."
+    exit 1
+fi
+if [ -n "$rec" ]; then
+    echo "gpg key set to $rec"
+else
+    echo "Usage: ddc directory_to_encrypt gpgkeyreference symmetricadditionaloptionalfile"
+    echo "No argument specified! Exiting now."
+    exit 1
+fi
+if [ -n "$double" ]; then
+    echo "openssl symmetric file key set to $double"
+    DOUBLEUP=true
+else
+    DOUBLEUP=false
+    echo "Additional optional symmetric key not specified, using just gpg, alright."
+fi
+
+for file in $(ls $dir/* | grep -v .asc$ | grep -v .gpg$ | grep -v .pgp$); do
+  gpg -e --cipher=aes256 --armor --always-trust --batch --yes -r $rec $file
+  if [ "$DOUBLEUP" == "true" ]; then
+    echo "Encrypting again with openssl and the symmetric key file"
+    openssl enc -pbkdf2 -aes256 -base64 -k "$double" -d -in "$file".asc -out "$file".asc.enc
+  else
+    echo "Single GPG pass of AES256."
+  fi
+  if [ -z "$shredd" ]; then
+    openssl rand -base64 900000 > $file
+    echo 0 > $file
+    cp /dev/null $file
+  else
+    shred -v -n 25 -u -z $file
+  fi
+  rm -f $file 2>/dev/null
+done
