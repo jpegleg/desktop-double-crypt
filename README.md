@@ -32,3 +32,6 @@ Running the installer in pwd with the template, will make a copy of the template
 and drop you into a vim session to edit the copy, as well as set up ~/Desktop
 
 files for GUI usage.
+
+
+Also see https://github.com/jpegleg/crypt-baller
