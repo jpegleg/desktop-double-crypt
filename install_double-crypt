@@ -1,0 +1,41 @@
+#!/usr/bin/env sh
+
+deskt="$(ls ~/Desktop || echo "Documents")
+pwdddc="$(ls ddc || echo "NOINSTDDC")"
+pathddc="$(which ddc || echo "NODDC")"
+
+if [ $pwdddc = "NOINSTDDC" ]; then
+    if [ $pathddc = "NODDC" ]; then
+      echo "No ddc in $pwd and no ddc in $PATH so exiting now."
+      exit 1
+    else
+      echo "ddc found in $PATH but not in $PWD"
+    fi
+  else
+    echo "ddc found in $pwd but not in $PATH"
+    echo "installing ./ddc to /usr/local/bin"
+    cp ./ddc /usr/local/bin
+    chmod +x /usr/local/bin/ddc
+fi
+
+ls encryptor_template || exit 1
+
+echo "type the template name then press enter"
+read templatename
+
+cp encryptor_template ~/"$deskt"/"$templatename"
+
+chmod +x ~/"$deskt"/"$templatename"
+
+echo "enter name for $templatename target directory"
+read enctarget
+
+mkdir ~/"$deskt"/"$enctarget"
+
+echo "entering vim to edit the $templatename copy"
+
+sleep 3
+
+vim ~/"$deskt"/"$templatename"
+
+echo "interactive ddc template install complete"
