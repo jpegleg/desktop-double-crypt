@@ -1,6 +1,5 @@
 #!/usr/bin/env sh
 
-deskt="$(ls ~/Desktop || echo Documents)"
 pwdddc="$(ls ddc || echo "NOINSTDDC")"
 pathddc="$(which ddc || echo "NODDC")"
 
@@ -28,19 +27,19 @@ ls encryptor_template || exit 1
 echo "type the template name then press enter"
 read templatename
 
-cp encryptor_template ~/"$deskt"/"$templatename"
+cp encryptor_template ~/Desktop/ || exit 1
 
-chmod +x ~/"$deskt"/"$templatename"
+chmod +x ~/Desktop/$templatename
 
 echo "enter name for $templatename target directory"
 read enctarget
 
-mkdir ~/"$deskt"/"$enctarget"
+mkdir ~/Desktop/$enctarget
 
 echo "entering vim to edit the $templatename copy"
 
 sleep 3
 
-vim ~/"$deskt"/"$templatename"
+vim ~/Desktop/$templatename
 
 echo "interactive ddc template install complete"
