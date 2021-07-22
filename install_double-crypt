@@ -13,9 +13,13 @@ if [ $pwdddc = "NOINSTDDC" ]; then
   else
     if [ $pathddc = "NODDC" ]; then
       echo "ddc found in $pwd but not in $PATH"
-      echo "please install ./ddc to /usr/local/bin"
+      echo "please install ./ddc to /usr/local/bin as a super user then run this installer again"
+      echo
+      echo "example, do this as root, do this with sudo, first:"
       echo "    cp ./ddc /usr/local/bin"
       echo "    chmod +x /usr/local/bin/ddc"
+      echo
+      echo
       exit 0
     else
       echo "ddc found"
@@ -27,7 +31,7 @@ ls encryptor_template || exit 1
 echo "type the template name then press enter"
 read templatename
 
-cp encryptor_template ~/Desktop/ || exit 1
+cp encryptor_template ~/Desktop/"$templatename" || exit 1
 
 chmod +x ~/Desktop/$templatename
 
