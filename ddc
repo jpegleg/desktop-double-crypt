@@ -29,6 +29,8 @@ else
     echo "Additional optional symmetric key not specified, using just gpg, alright."
 fi
 
+cd $dir || exit 1
+
 for file in $(ls $dir/* | grep -v .asc$ | grep -v .gpg$ | grep -v .pgp$ | grep -v .enc$); do
   gpg -e --cipher=aes256 --armor --always-trust --batch --yes -r $rec $file
   if [ $DOUBLEUP = "true" ]; then
