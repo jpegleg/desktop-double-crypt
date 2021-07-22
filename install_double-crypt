@@ -15,8 +15,8 @@ if [ $pwdddc = "NOINSTDDC" ]; then
     if [ $pathddc = "NODDC" ]; then
       echo "ddc found in $pwd but not in $PATH"
       echo "please install ./ddc to /usr/local/bin"
-      echo "cp ./ddc /usr/local/bin"
-      echo "chmod +x /usr/local/bin/ddc"
+      echo "    cp ./ddc /usr/local/bin"
+      echo "    chmod +x /usr/local/bin/ddc"
       exit 0
     else
       echo "ddc found"
