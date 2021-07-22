@@ -23,17 +23,18 @@ fi
 if [ -n "$double" ]; then
     ls $double || exit 1
     echo "openssl symmetric file key set to $double"
-    DOUBLEUP=true
+    DOUBLEUP="true"
 else
-    DOUBLEUP=false
+    DOUBLEUP="false"
     echo "Additional optional symmetric key not specified, using just gpg, alright."
 fi
 
-for file in $(ls $dir/* | grep -v .asc$ | grep -v .gpg$ | grep -v .pgp$); do
+for file in $(ls $dir/* | grep -v .asc$ | grep -v .gpg$ | grep -v .pgp$ | grep -v .enc$); do
   gpg -e --cipher=aes256 --armor --always-trust --batch --yes -r $rec $file
-  if [ "$DOUBLEUP" == "true" ]; then
+  if [ $DOUBLEUP = "true" ]; then
     echo "Encrypting again with openssl and the symmetric key file"
     openssl enc -pbkdf2 -aes256 -base64 -k "$double" -d -in "$file".asc -out "$file".asc.enc
+    rm "$file".asc
   else
     echo "Single GPG pass of AES256."
   fi
