@@ -16,6 +16,7 @@ if [ $pwdddc = "NOINSTDDC" ]; then
     echo "please install ./ddc to /usr/local/bin"
     echo "cp ./ddc /usr/local/bin"
     echo "chmod +x /usr/local/bin/ddc"
+    exit 0
 fi
 
 ls encryptor_template || exit 1
