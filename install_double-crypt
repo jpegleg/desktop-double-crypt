@@ -12,11 +12,15 @@ if [ $pwdddc = "NOINSTDDC" ]; then
       echo "ddc found in $PATH but not in $PWD"
     fi
   else
-    echo "ddc found in $pwd but not in $PATH"
-    echo "please install ./ddc to /usr/local/bin"
-    echo "cp ./ddc /usr/local/bin"
-    echo "chmod +x /usr/local/bin/ddc"
-    exit 0
+    if [ $pathddc = "NODDC" ]; then
+      echo "ddc found in $pwd but not in $PATH"
+      echo "please install ./ddc to /usr/local/bin"
+      echo "cp ./ddc /usr/local/bin"
+      echo "chmod +x /usr/local/bin/ddc"
+      exit 0
+    else
+      echo "ddc found"
+    fi
 fi
 
 ls encryptor_template || exit 1
