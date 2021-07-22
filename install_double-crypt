@@ -1,6 +1,6 @@
 #!/usr/bin/env sh
 
-deskt="$(ls ~/Desktop || echo "Documents")
+deskt="$(ls ~/Desktop || echo Documents)"
 pwdddc="$(ls ddc || echo "NOINSTDDC")"
 pathddc="$(which ddc || echo "NODDC")"
 
