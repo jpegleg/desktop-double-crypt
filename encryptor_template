@@ -1,6 +1,3 @@
 #!/usr/bin/env bash
 
-deskt="$(ls ~/Desktop || echo Documents)"
-target=TEMPLATEDIR
-
-/usr/local/bin/ddc "$deskt"/"$target" TEMPLATEGPG TEMPLATEFILE
+/usr/local/bin/ddc TEMPLATETARGET TEMPLATEGPG TEMPLATEFILE
